@@ -1,0 +1,61 @@
+name: "Repo Mirror Admin"
+description: "Built on GitHub Actions, the repo on a journey — code sails across, assets in tow 🚀"
+author: "zhiqiang <zhiqiang2033@gmail.com>"
+
+inputs:
+  # ===== SOURCE REPO PARAMS =====
+  REPO:
+    description: "SOURCE repo URL 🌱 (default: current repo)"
+    required: false
+
+  USERNAME:
+    description: "Operator account for the SOURCE repo 👤"
+    required: false
+  PASSWORD:
+    description: "Secret code for the SOURCE repo 🔑 (optional)"
+    required: false
+  TOKEN:
+    description: "Universal access token for the SOURCE repo 🛂"
+    required: false
+
+  # ===== TARGET REPO PARAMS =====
+  TARGET_REPO:
+    description: "TARGET repo URL 🎯 (default: current repo)"
+    required: false
+
+  TARGET_USERNAME:
+    description: "Operator account for the TARGET repo 👤"
+    required: false
+  TARGET_PASSWORD:
+    description: "Secret code for the TARGET repo 🔑 (optional)"
+    required: false
+  TARGET_TOKEN:
+    description: "Universal access token for the TARGET repo 🛂"
+    required: false
+
+  # ===== EXTRAS =====
+  TAGS:
+    description: "Tag list to sync 🏷️ (comma-separated)"
+    required: false
+  FILES:
+    description: "Files to travel along with the code 📦"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.REPO }}
+    - ${{ inputs.USERNAME }}
+    - ${{ inputs.PASSWORD }}
+    - ${{ inputs.TOKEN }}
+    - ${{ inputs.TARGET_REPO }}
+    - ${{ inputs.TARGET_USERNAME }}
+    - ${{ inputs.TARGET_PASSWORD }}
+    - ${{ inputs.TARGET_TOKEN }}
+    - ${{ inputs.TAGS }}
+    - ${{ inputs.FILES }}
+
+branding:
+  icon: "package"
+  color: "blue"
